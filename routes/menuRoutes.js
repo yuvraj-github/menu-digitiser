@@ -1,13 +1,21 @@
 const express = require('express');
 const uploadMiddleware = require('../middleware/uploadMiddleware');
-const {
-    uploadMenu,
-    saveMenu,
-    getMenu,
-    dbTest
-} = require('../controllers/menuController');
+const { uploadMenu } = require('../controllers/uploadController');
 
 const router = express.Router();
+
+function handleMenuImagesUpload(req, res, next) {
+    uploadMiddleware(req, res, function (error) {
+        if (error) {
+            return res.status(400).json({
+                success: false,
+                message: error.message
+            });
+        }
+
+        next();
+    });
+}
 
 router.get('/api/health', (req, res) => {
     res.json({
@@ -16,9 +24,6 @@ router.get('/api/health', (req, res) => {
     });
 });
 
-router.post('/api/menu/upload', uploadMiddleware, uploadMenu);
-router.post('/api/menu/save', saveMenu);
-router.get('/api/menu/:id', getMenu);
-router.get('/api/db-test', dbTest);
+router.post('/api/menu/upload', handleMenuImagesUpload, uploadMenu);
 
 module.exports = router;

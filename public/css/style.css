@@ -148,6 +148,10 @@ button.remove-button:hover:not(:disabled) {
 	font-size: 14px;
 }
 
+#fileName {
+	overflow-wrap: anywhere;
+}
+
 #statusMessage[data-state="error"] {
 	color: var(--danger);
 }
@@ -180,6 +184,25 @@ button.remove-button:hover:not(:disabled) {
 	display: grid;
 	gap: 16px;
 }
+.menu-notes {
+	margin-bottom: 26px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid var(--line);
+}
+
+.menu-notes-heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	margin-bottom: 10px;
+}
+
+.menu-notes-heading h3 {
+	margin: 0;
+	font-size: 16px;
+}
+
 
 .menu-details {
 	grid-template-columns: minmax(0, 1fr) 150px;
@@ -238,6 +261,127 @@ button.remove-button:hover:not(:disabled) {
 	font-size: 14px;
 }
 
+.review-summary {
+	margin: -10px 0 20px;
+	padding: 10px 12px;
+	border-left: 3px solid var(--green);
+	background: var(--soft-green);
+	color: var(--green-dark);
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.item-heading {
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.item-heading .remove-button {
+	margin-left: auto;
+}
+
+.menu-item.needs-review,
+.editor-entry.needs-review {
+	border-color: #d8cda9;
+	background: #fffdf7;
+}
+
+.menu-item.needs-review {
+	border-left: 3px solid #b39c5c;
+}
+
+.review-badge {
+	padding: 3px 8px;
+	border-radius: 12px;
+	background: #f1e9cf;
+	color: #675a31;
+	font-family: "Segoe UI", sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.review-badge[hidden] {
+	display: none;
+}
+
+.checkbox-field label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 42px;
+}
+
+.checkbox-field input[type="checkbox"] {
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	accent-color: var(--green);
+}
+
+.field input[readonly] {
+	background: #f3f6f3;
+	color: var(--muted);
+}
+
+.field select {
+	width: 100%;
+	min-width: 0;
+	min-height: 42px;
+	padding: 10px 12px;
+	border: 1px solid #cbd5cc;
+	border-radius: 5px;
+	background: #fff;
+	color: var(--ink);
+	font: inherit;
+}
+
+.nested-section {
+	margin-top: 16px;
+	padding-top: 14px;
+	border-top: 1px solid var(--line);
+}
+
+.nested-section-title {
+	margin: 0 0 8px;
+	color: var(--green-dark);
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.nested-list {
+	display: grid;
+	gap: 8px;
+}
+
+.editor-entry,
+.nested-group {
+	min-width: 0;
+	padding: 10px 0;
+	border-top: 1px solid #e8ede8;
+}
+
+.nested-heading {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.nested-heading .remove-button {
+	margin-left: auto;
+}
+
+.nested-fields {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.nested-add-button {
+	min-height: 36px;
+	margin-top: 10px;
+	padding: 7px 11px;
+	font-size: 14px;
+}
+
 .item-fields {
 	grid-template-columns: minmax(0, 1fr) 140px;
 }
@@ -264,13 +408,13 @@ textarea {
 	border-top: 1px solid var(--line);
 }
 
-.approve-button {
+.export-button {
 	min-height: 48px;
 	padding-inline: 22px;
 	background: var(--green-dark);
 }
 
-.save-message {
+.export-message {
 	margin: 12px 0 0;
 	color: var(--green-dark);
 	font-size: 14px;
@@ -279,14 +423,14 @@ textarea {
 	white-space: pre-line;
 }
 
-.save-message[data-state="error"] {
+.export-message[data-state="error"] {
 	padding: 10px 12px;
 	border-left: 3px solid var(--danger);
 	background: #fff5f4;
 	color: var(--danger);
 }
 
-.save-message[data-state="success"] {
+.export-message[data-state="success"] {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -297,26 +441,8 @@ textarea {
 	background: var(--soft-green);
 }
 
-.save-message[hidden] {
+.export-message[hidden] {
 	display: none;
-}
-
-.view-menu-button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 40px;
-	padding: 8px 14px;
-	border-radius: 5px;
-	background: var(--green);
-	color: #fff;
-	text-decoration: none;
-	font-weight: 600;
-	white-space: nowrap;
-}
-
-.view-menu-button:hover {
-	background: var(--green-dark);
 }
 
 @media (max-width: 600px) {
@@ -356,12 +482,16 @@ textarea {
 		width: 100%;
 	}
 
-	.save-message[data-state="success"] {
+	.export-message[data-state="success"] {
 		align-items: stretch;
 		flex-direction: column;
 	}
 
-	.view-menu-button {
-		align-self: flex-start;
+	.nested-fields {
+		grid-template-columns: 1fr;
+	}
+
+	.nested-heading {
+		flex-wrap: wrap;
 	}
 }

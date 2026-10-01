@@ -10,13 +10,13 @@
     <main class="container">
         <header class="page-header">
             <h1>Menu Digitiser</h1>
-            <p>Upload a photo of a paper menu and convert it into a structured digital menu.</p>
+            <p>Upload menu pages and handwritten specials, review the extracted details, then download an import-ready catalog.</p>
         </header>
 
         <section class="panel" aria-label="Upload menu">
             <div class="upload-box">
-                <label for="menuImage">Select menu image</label>
-                <input type="file" id="menuImage" accept="image/jpeg,image/png,image/jpg">
+                <label for="menuImage">Select menu pages and notes</label>
+                <input type="file" id="menuImage" accept="image/jpeg,image/png,image/jpg" multiple>
                 <div id="fileName"></div>
                 <button id="extractButton" type="button" disabled>Extract Menu</button>
                 <p id="statusMessage" role="status" aria-live="polite"></p>
@@ -25,8 +25,9 @@
 
         <section id="reviewSection" class="panel" aria-labelledby="reviewTitle" hidden>
             <div class="review-heading">
-                <h2 id="reviewTitle">Review Extracted Menu</h2>
+                <h2 id="reviewTitle">Review Extracted Catalog</h2>
             </div>
+            <div id="reviewSummary" class="review-summary" role="status" aria-live="polite"></div>
 
             <div class="menu-details">
                 <div class="field">
@@ -39,13 +40,21 @@
                 </div>
             </div>
 
+            <section class="menu-notes" aria-labelledby="menuNotesTitle">
+                <div class="menu-notes-heading">
+                    <h3 id="menuNotesTitle">Menu notes</h3>
+                    <button id="addNoteButton" class="secondary" type="button">Add note</button>
+                </div>
+                <div id="menuNotesList" class="nested-list"></div>
+            </section>
+
             <div id="categoryList" class="category-list"></div>
 
             <div class="review-actions">
                 <button id="addCategoryButton" class="secondary" type="button">Add Category</button>
-                <button id="approveButton" class="approve-button" type="button">Approve &amp; Save Menu</button>
+                <button id="exportButton" class="export-button" type="button">Download JSON</button>
             </div>
-            <div id="saveMessage" class="save-message" role="status" aria-live="polite" hidden></div>
+            <div id="exportMessage" class="export-message" role="status" aria-live="polite" hidden></div>
         </section>
     </main>
 

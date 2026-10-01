@@ -20,4 +20,4 @@ const upload = multer({
 	}
 });
 
-module.exports = upload.single('menuImage');
+module.exports = upload.array('menuImages', 10);
