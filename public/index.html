@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Digitiser</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <main class="container">
+        <header class="page-header">
+            <h1>Menu Digitiser</h1>
+            <p>Upload a photo of a paper menu and convert it into a structured digital menu.</p>
+        </header>
+
+        <section class="panel" aria-label="Upload menu">
+            <div class="upload-box">
+                <label for="menuImage">Select menu image</label>
+                <input type="file" id="menuImage" accept="image/jpeg,image/png,image/jpg">
+                <div id="fileName"></div>
+                <button id="extractButton" type="button" disabled>Extract Menu</button>
+                <p id="statusMessage" role="status" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <section id="reviewSection" class="panel" aria-labelledby="reviewTitle" hidden>
+            <div class="review-heading">
+                <h2 id="reviewTitle">Review Extracted Menu</h2>
+            </div>
+
+            <div class="menu-details">
+                <div class="field">
+                    <label for="menuName">Menu name</label>
+                    <input id="menuName" type="text">
+                </div>
+                <div class="field">
+                    <label for="currency">Currency</label>
+                    <input id="currency" type="text" aria-label="Currency symbol or code">
+                </div>
+            </div>
+
+            <div id="categoryList" class="category-list"></div>
+
+            <div class="review-actions">
+                <button id="addCategoryButton" class="secondary" type="button">Add Category</button>
+                <button id="approveButton" class="approve-button" type="button">Approve &amp; Save Menu</button>
+            </div>
+            <div id="saveMessage" class="save-message" role="status" aria-live="polite" hidden></div>
+        </section>
+    </main>
+
+    <script src="/js/index.js"></script>
+</body>
+</html>
